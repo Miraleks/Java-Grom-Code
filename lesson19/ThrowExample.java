@@ -9,10 +9,10 @@ public class ThrowExample {
         useOfTestMethod();
     }
 
-    private static void test() throws Exception{
+    private static void test(){
         for(String element : array){
             if(element == null){
-                throw new Exception("null is detected");
+                throw new RuntimeException("null is detected");
             }
         }
         System.out.println("done");
