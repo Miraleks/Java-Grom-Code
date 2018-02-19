@@ -54,4 +54,5 @@ public class Storage {
     public void setStorageSize(long storageSize) {
         this.storageSize = storageSize;
     }
+
 }
