@@ -6,12 +6,20 @@ public class Controller {
         if(file == null) throw new RuntimeException("null data is detected");
         if(!maxSizeReached(storage,file)) throw new RuntimeException("there is not enough storage in the storage");
         if(!typeCheck(storage, file)) throw new RuntimeException("data formats do not match");
+        if(dataCheck(storage, file)) throw new RuntimeException("this file already exists in the storage");
 
         File[] files = storage.getFiles();
+        boolean emptyElement = false;
         for(int i = 0; i < files.length; i++){
             if(files[i] == null){
                 files[i] = file;
+                emptyElement = true;
             }
+        }
+        if(!emptyElement){
+            File[] files1 = new File[(storage.getFiles().length+1)];
+            files1[storage.getFiles().length] = file;
+            storage.setFiles(files1);
         }
 
 
@@ -46,5 +54,13 @@ public class Controller {
             if(format == file.getFormat()) return true;
         }
         return false;
+    }
+    public boolean dataCheck(Storage storage, File file){
+        boolean inStorage = false;
+        File[] files = storage.getFiles();
+        for(int i = 0; i < files.length; i++){
+            if(files[i].getId() == file.getId()) inStorage = true;
+        }
+        return inStorage;
     }
 }
