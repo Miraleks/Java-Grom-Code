@@ -43,8 +43,6 @@ public class Controller {
             throw new RuntimeException("file not found in storage");
         }
         else storage.setFiles(files);
-
-
     }
 
     public void transferAll(Storage storageFrom, Storage storageTo) throws Exception {
@@ -79,8 +77,25 @@ public class Controller {
         storageTo.setFiles(newFiles);
 
     }
-
     public void transferFile(Storage storageFrom, Storage storageTo, long id) throws Exception {
+        File[] filesFrom = storageFrom.getFiles();
+        int counter = 0;
+        boolean flag = false;
+        for(File files: filesFrom){
+            if(files.getId() == id){
+                flag = true;
+                break;
+            }
+            counter++;
+        }
+        if(!flag){
+            throw new RuntimeException("file didn't found in storage");
+        }
+        else{
+            put(storageTo, filesFrom[counter]);
+        }
+
+
 
     }
 
