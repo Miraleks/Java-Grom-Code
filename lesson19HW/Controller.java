@@ -30,6 +30,20 @@ public class Controller {
     }
 
     public void delete(Storage storage, File file) throws Exception {
+        if (file == null) {
+            throw new RuntimeException("null data is detected");
+        }
+        File[] files = storage.getFiles();
+        for(int i =0; i < files.length; i++){
+            if(files[i].getId() == file.getId()){
+                files[i] = null;
+            }
+        }
+        if(files == storage.getFiles()){
+            throw new RuntimeException("file not found in storage");
+        }
+        else storage.setFiles(files);
+
 
     }
 
