@@ -99,10 +99,15 @@ public class Controller {
     private boolean maxSizeReached(Storage storage, File file) {
         File[] files = storage.getFiles();
         long maxSize = file.getSize();
+        System.out.println("start from: " + maxSize);
         for (File element : files) {
             maxSize = maxSize + element.getSize();
+            System.out.println("add1");
         }
+        System.out.println("summ size: " + maxSize);
+        System.out.println("storage size: "+ storage.getStorageSize());
         return (maxSize <= storage.getStorageSize());
+
     }
 
     private boolean typeCheck(Storage storage, File file) {
@@ -126,15 +131,15 @@ public class Controller {
             throw new RuntimeException("null data is detected");
 
         }
-        if (!maxSizeReached(storage, file)) {
-            throw new RuntimeException("there is not enough storage in the storage");
-
-        }
         if (!typeCheck(storage, file)) {
-            throw new RuntimeException("data formats do not match");
+            throw new RuntimeException("format file don't allowed");
         }
         if (!fileCheck(file)) {
             throw new RuntimeException("filename incorrect");
+        }
+        if (!maxSizeReached(storage, file)) {
+            throw new RuntimeException("there is not enough space in the storage");
+
         }
 
     }
