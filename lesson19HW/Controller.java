@@ -48,6 +48,35 @@ public class Controller {
     }
 
     public void transferAll(Storage storageFrom, Storage storageTo) throws Exception {
+        if(storageFrom.getFormatSupported() != storageTo.getFormatSupported()){
+            throw new RuntimeException("storage incorrect");
+        }
+        long spaceValue = 0;
+        File[] filesFrom = storageFrom.getFiles();
+        for(File file : filesFrom){
+            spaceValue = spaceValue + file.getSize();
+        }
+        File[] filesTo = storageTo.getFiles();
+        int counter = filesFrom.length;
+        for(File file : filesTo){
+            spaceValue = spaceValue + file.getSize();
+            if(file == null) counter = counter - 1;
+        }
+        if(counter < 0) counter = 0;
+
+        if(storageTo.getStorageSize() < spaceValue){
+            throw new RuntimeException("not enough space in the destination storage");
+        }
+
+        File[] newFiles = new File[storageTo.getFiles().length + counter];
+        int j = 0;
+        for(int i =0; i < newFiles.length; i++){
+            if(filesTo[i] == null) {
+                filesTo[i] = filesFrom[j];
+                j = j + 1;
+            }
+        }
+        storageTo.setFiles(newFiles);
 
     }
 
