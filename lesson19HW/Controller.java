@@ -6,11 +6,12 @@ public class Controller {
 
     public void put(Storage storage, File file) throws Exception {
 
-        try {
-            dataTest(storage, file);
-        } catch (Exception e) {
-            System.out.println("error: " + e.getMessage());
-        }
+//        try {
+//            dataTest(storage, file);
+//        } catch (Exception e) {
+//            System.out.println("error: " + e.getMessage());
+//        }
+        dataTest(storage, file);
         boolean done = false;
         File[] files = storage.getFiles();
         for (int i = 0; i < files.length; i++) {
@@ -40,13 +41,13 @@ public class Controller {
             }
         }
         if (files == storage.getFiles()) {
-            throw new RuntimeException("file not found in storage");
+            throw new RuntimeException("file not found in storage: " + file.getId());
         } else storage.setFiles(files);
     }
 
     public void transferAll(Storage storageFrom, Storage storageTo) throws Exception {
         if (storageFrom.getFormatSupported() != storageTo.getFormatSupported()) {
-            throw new RuntimeException("storage incorrect");
+            throw new RuntimeException("storage incorrect from: " + storageFrom.getId() + " to: " + storageTo.getId());
         }
         long spaceValue = 0;
         File[] filesFrom = storageFrom.getFiles();
@@ -99,13 +100,9 @@ public class Controller {
     private boolean maxSizeReached(Storage storage, File file) {
         File[] files = storage.getFiles();
         long maxSize = file.getSize();
-        System.out.println("start from: " + maxSize);
         for (File element : files) {
             maxSize = maxSize + element.getSize();
-            System.out.println("add1");
         }
-        System.out.println("summ size: " + maxSize);
-        System.out.println("storage size: "+ storage.getStorageSize());
         return (maxSize <= storage.getStorageSize());
 
     }
@@ -128,17 +125,17 @@ public class Controller {
 
     private void dataTest(Storage storage, File file) {
         if (file == null) {
-            throw new RuntimeException("null data is detected");
+            throw new RuntimeException("null data is detected: " + file.getId());
 
         }
         if (!typeCheck(storage, file)) {
-            throw new RuntimeException("format file don't allowed");
+            throw new RuntimeException("format file don't allowed: " + file.getId() + " to storage: " + storage.getId() );
         }
         if (!fileCheck(file)) {
-            throw new RuntimeException("filename incorrect");
+            throw new RuntimeException("filename incorrect: "+ file.getId());
         }
         if (!maxSizeReached(storage, file)) {
-            throw new RuntimeException("there is not enough space in the storage");
+            throw new RuntimeException("there is not enough space in the storage: " + storage.getId() + " to adding file: " + file.getId());
 
         }
 
