@@ -8,7 +8,7 @@ public class Controller {
 
         try {
             dataTest(storage, file);
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("error: " + e.getMessage());
         }
         boolean done = false;
@@ -19,9 +19,9 @@ public class Controller {
                 done = true;
             }
         }
-        if(!done){
+        if (!done) {
             File[] newFiles = new File[storage.getFiles().length + 1];
-            for(int i = 0; i < files.length; i++){
+            for (int i = 0; i < files.length; i++) {
                 newFiles[i] = files[i];
             }
             newFiles[files.length] = file;
@@ -30,24 +30,84 @@ public class Controller {
     }
 
     public void delete(Storage storage, File file) throws Exception {
-
+        if (file == null) {
+            throw new RuntimeException("null data is detected");
+        }
+        File[] files = storage.getFiles();
+        for (int i = 0; i < files.length; i++) {
+            if (files[i].getId() == file.getId()) {
+                files[i] = null;
+            }
+        }
+        if (files == storage.getFiles()) {
+            throw new RuntimeException("file not found in storage");
+        } else storage.setFiles(files);
     }
 
     public void transferAll(Storage storageFrom, Storage storageTo) throws Exception {
+        if (storageFrom.getFormatSupported() != storageTo.getFormatSupported()) {
+            throw new RuntimeException("storage incorrect");
+        }
+        long spaceValue = 0;
+        File[] filesFrom = storageFrom.getFiles();
+        for (File file : filesFrom) {
+            spaceValue = spaceValue + file.getSize();
+        }
+        File[] filesTo = storageTo.getFiles();
+        int counter = filesFrom.length;
+        for (File file : filesTo) {
+            spaceValue = spaceValue + file.getSize();
+            if (file == null) counter = counter - 1;
+        }
+        if (counter < 0) counter = 0;
+
+        if (storageTo.getStorageSize() < spaceValue) {
+            throw new RuntimeException("not enough space in the destination storage");
+        }
+
+        File[] newFiles = new File[storageTo.getFiles().length + counter];
+        int j = 0;
+        for (int i = 0; i < newFiles.length; i++) {
+            if (filesTo[i] == null) {
+                filesTo[i] = filesFrom[j];
+                j = j + 1;
+            }
+        }
+        storageTo.setFiles(newFiles);
 
     }
 
     public void transferFile(Storage storageFrom, Storage storageTo, long id) throws Exception {
-
+        File[] filesFrom = storageFrom.getFiles();
+        int counter = 0;
+        boolean flag = false;
+        for (File files : filesFrom) {
+            if (files.getId() == id) {
+                flag = true;
+                break;
+            }
+            counter++;
+        }
+        if (!flag) {
+            throw new RuntimeException("file didn't found in storage");
+        } else {
+            put(storageTo, filesFrom[counter]);
+            delete(storageFrom, filesFrom[counter]);
+        }
     }
 
     private boolean maxSizeReached(Storage storage, File file) {
         File[] files = storage.getFiles();
         long maxSize = file.getSize();
+        System.out.println("start from: " + maxSize);
         for (File element : files) {
             maxSize = maxSize + element.getSize();
+            System.out.println("add1");
         }
+        System.out.println("summ size: " + maxSize);
+        System.out.println("storage size: "+ storage.getStorageSize());
         return (maxSize <= storage.getStorageSize());
+
     }
 
     private boolean typeCheck(Storage storage, File file) {
@@ -58,10 +118,10 @@ public class Controller {
         return false;
     }
 
-    private boolean fileCheck(File file){
+    private boolean fileCheck(File file) {
         char[] chars = file.getName().toCharArray();
-        if(chars.length > 10) return false;
-        for(char ch : chars)
+        if (chars.length > 10) return false;
+        for (char ch : chars)
             if (!isLetterOrDigit(ch)) return false;
         return true;
     }
@@ -71,15 +131,15 @@ public class Controller {
             throw new RuntimeException("null data is detected");
 
         }
-        if (!maxSizeReached(storage, file)) {
-            throw new RuntimeException("there is not enough storage in the storage");
-
-        }
         if (!typeCheck(storage, file)) {
-            throw new RuntimeException("data formats do not match");
+            throw new RuntimeException("format file don't allowed");
         }
-        if(!fileCheck(file)){
+        if (!fileCheck(file)) {
             throw new RuntimeException("filename incorrect");
+        }
+        if (!maxSizeReached(storage, file)) {
+            throw new RuntimeException("there is not enough space in the storage");
+
         }
 
     }
