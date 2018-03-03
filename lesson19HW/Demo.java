@@ -23,7 +23,7 @@ public class Demo {
 
 
         try {
-            controller.put(storage1, file6);
+            controller.put(storage1, null);
         } catch (Exception e) {
             System.err.println("error: " + e.getMessage());
         }

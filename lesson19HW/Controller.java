@@ -124,7 +124,7 @@ public class Controller {
 
     private void dataTest(Storage storage, File file) {
         if (file == null) {
-            throw new RuntimeException("null data is detected: " + file.getId());
+            throw new RuntimeException("null data is detected");
 
         }
         if (!typeCheck(storage, file)) {
