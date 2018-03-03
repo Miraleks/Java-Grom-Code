@@ -14,7 +14,7 @@ public class Demo {
         File file7 = new File(1242140, "file7", "dat", 1024);
         File file8 = new File(1242141, "file8", "doc", 1024);
 
-        File[] files1 = new File[]{file1, file2, file3, file4, file5};
+
         String[] formatSupportedStorage1 = new String[]{"doc", "txt"};
 
         Controller controller = new Controller();
@@ -52,6 +52,11 @@ public class Demo {
             System.err.println("error: " + e.getMessage());
         }
         try {
+            controller.put(storage1, file5);
+        } catch (Exception e) {
+            System.err.println("error: " + e.getMessage());
+        }
+        try {
             controller.put(storage1, file6);
         } catch (Exception e) {
             System.err.println("error: " + e.getMessage());
@@ -77,14 +82,6 @@ public class Demo {
             System.err.println("error: " + e.getMessage());
         }
 
-
-
-
-
-//        File[] filesDone = storage1.getFiles();
-//        for (File file : filesDone) {
-//            System.out.println(file.getName());
-//        }
 
     }
 }

@@ -132,10 +132,22 @@ public class Controller {
         return true;
     }
 
+    private boolean fileCheckForExist(Storage storage, File file){
+        if(storage.getFiles() != null) {
+            File[] files = storage.getFiles();
+            for(File element : files){
+                if(element.getId() == file.getId()) return false;
+            }
+        }
+        return true;
+    }
+
     private void dataTest(Storage storage, File file) {
         if (file == null) {
             throw new RuntimeException("null data is detected");
-
+        }
+        if(!fileCheckForExist(storage, file)){
+            throw new RuntimeException("file: " + file.getId() + " already exist in storage: " + storage.getId());
         }
         if (!typeCheck(storage, file)) {
             throw new RuntimeException("format file don't allowed: " + file.getId() + " to storage: " + storage.getId() );
