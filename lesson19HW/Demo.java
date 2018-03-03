@@ -37,6 +37,25 @@ public class Demo {
         } catch (Exception e) {
             System.err.println("error: " + e.getMessage());
         }
+        try {
+            controller.delete(storage1, file7);
+        } catch (Exception e) {
+            System.err.println("error: " + e.getMessage());
+        }
+        try {
+            controller.delete(storage1, file8);
+        } catch (Exception e) {
+            System.err.println("error: " + e.getMessage());
+        }
+        try {
+            controller.delete(storage1, file6);
+        } catch (Exception e) {
+            System.err.println("error: " + e.getMessage());
+        }
+
+
+
+
 
 //        File[] filesDone = storage1.getFiles();
 //        for (File file : filesDone) {

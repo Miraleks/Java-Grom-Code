@@ -1,16 +1,13 @@
 package lesson19HW;
 
+import java.util.Arrays;
+
 import static java.lang.Character.isLetterOrDigit;
 
 public class Controller {
 
     public void put(Storage storage, File file) throws Exception {
 
-//        try {
-//            dataTest(storage, file);
-//        } catch (Exception e) {
-//            System.out.println("error: " + e.getMessage());
-//        }
         dataTest(storage, file);
         boolean done = false;
         File[] files = storage.getFiles();
@@ -35,12 +32,14 @@ public class Controller {
             throw new RuntimeException("null data is detected");
         }
         File[] files = storage.getFiles();
+        boolean check = false;
         for (int i = 0; i < files.length; i++) {
-            if (files[i].getId() == file.getId()) {
+            if (files[i] != null &&  files[i].getId() == file.getId()) {
                 files[i] = null;
+                check = true;
             }
         }
-        if (files == storage.getFiles()) {
+        if (!check) {
             throw new RuntimeException("file not found in storage: " + file.getId());
         } else storage.setFiles(files);
     }
