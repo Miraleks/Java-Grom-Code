@@ -7,23 +7,31 @@ import static java.lang.Character.isLetterOrDigit;
 public class Controller {
 
     public void put(Storage storage, File file) throws Exception {
-
         dataTest(storage, file);
-        boolean done = false;
-        File[] files = storage.getFiles();
-        for (int i = 0; i < files.length; i++) {
-            if (files[i] == null) {
-                files[i] = file;
-                done = true;
+        if(storage.getFiles() != null) {
+            boolean done = false;
+
+            File[] files = storage.getFiles();
+            for (int i = 0; i < files.length; i++) {
+                if (files[i] == null) {
+                    files[i] = file;
+                    done = true;
+                }
+            }
+
+            if (!done) {
+                File[] newFiles = new File[storage.getFiles().length + 1];
+                for (int i = 0; i < files.length; i++) {
+                    newFiles[i] = files[i];
+                }
+                newFiles[files.length] = file;
+                storage.setFiles(newFiles);
             }
         }
-        if (!done) {
-            File[] newFiles = new File[storage.getFiles().length + 1];
-            for (int i = 0; i < files.length; i++) {
-                newFiles[i] = files[i];
-            }
-            newFiles[files.length] = file;
-            storage.setFiles(newFiles);
+        else {
+            File[] files = new File[] {file};
+            storage.setFiles(files);
+
         }
     }
 
@@ -97,10 +105,12 @@ public class Controller {
     }
 
     private boolean maxSizeReached(Storage storage, File file) {
-        File[] files = storage.getFiles();
         long maxSize = file.getSize();
-        for (File element : files) {
-            maxSize = maxSize + element.getSize();
+        if(storage.getFiles() != null) {
+            File[] files = storage.getFiles();
+            for (File element : files) {
+                maxSize = maxSize + element.getSize();
+            }
         }
         return (maxSize <= storage.getStorageSize());
 

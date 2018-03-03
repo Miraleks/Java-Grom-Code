@@ -19,7 +19,7 @@ public class Demo {
 
         Controller controller = new Controller();
 
-        Storage storage1 = new Storage(123453145, files1, formatSupportedStorage1, "Ukraine", 6144);
+        Storage storage1 = new Storage(123453145, null, formatSupportedStorage1, "Ukraine", 6144);
 
 
         try {
@@ -28,7 +28,31 @@ public class Demo {
             System.err.println("error: " + e.getMessage());
         }
         try {
-            controller.put(storage1, file7);
+            controller.put(storage1, file1);
+        } catch (Exception e) {
+            System.err.println("error: " + e.getMessage());
+        }
+        try {
+            controller.put(storage1, file2);
+        } catch (Exception e) {
+            System.err.println("error: " + e.getMessage());
+        }try {
+            controller.put(storage1, file3);
+        } catch (Exception e) {
+            System.err.println("error: " + e.getMessage());
+        }
+        try {
+            controller.put(storage1, file4);
+        } catch (Exception e) {
+            System.err.println("error: " + e.getMessage());
+        }
+        try {
+            controller.put(storage1, file5);
+        } catch (Exception e) {
+            System.err.println("error: " + e.getMessage());
+        }
+        try {
+            controller.put(storage1, file6);
         } catch (Exception e) {
             System.err.println("error: " + e.getMessage());
         }
