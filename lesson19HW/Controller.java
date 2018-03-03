@@ -1,7 +1,5 @@
 package lesson19HW;
 
-import java.util.Arrays;
-
 import static java.lang.Character.isLetterOrDigit;
 
 public class Controller {
