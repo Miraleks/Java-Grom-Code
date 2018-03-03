@@ -24,8 +24,6 @@ public class Demo {
         Storage storage1 = new Storage(123453145, files1, formatSupportedStorage1, "Ukraine", 6144);
 
 
-
-
         try {
             controller.put(storage1, null);
         } catch (Exception e) {
