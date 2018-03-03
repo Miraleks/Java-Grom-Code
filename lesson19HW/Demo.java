@@ -17,9 +17,13 @@ public class Demo {
 
         String[] formatSupportedStorage1 = new String[]{"doc", "txt"};
 
+        File[] files1 = new File[5];
+
         Controller controller = new Controller();
 
-        Storage storage1 = new Storage(123453145, null, formatSupportedStorage1, "Ukraine", 6144);
+        Storage storage1 = new Storage(123453145, files1, formatSupportedStorage1, "Ukraine", 6144);
+
+
 
 
         try {
@@ -81,6 +85,9 @@ public class Demo {
         } catch (Exception e) {
             System.err.println("error: " + e.getMessage());
         }
+
+//        System.out.println(Arrays.deepToString(storage1.getFiles()));
+//        System.out.println(storage1.getFiles().length);
 
 
     }
