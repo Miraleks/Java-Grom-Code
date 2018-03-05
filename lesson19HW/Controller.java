@@ -1,7 +1,5 @@
 package lesson19HW;
 
-import static java.lang.Character.isLetterOrDigit;
-
 public class Controller {
 
     public void put(Storage storage, File file) throws Exception {
@@ -118,14 +116,6 @@ public class Controller {
         return false;
     }
 
-    private boolean fileCheck(File file) {
-        char[] chars = file.getName().toCharArray();
-        if (chars.length > 10) return false;
-        for (char ch : chars)
-            if (!isLetterOrDigit(ch)) return false;
-        return true;
-    }
-
     private boolean fileCheckForExist(Storage storage, File file){
         if(storage.getFiles() != null) {
             File[] files = storage.getFiles();
@@ -146,7 +136,7 @@ public class Controller {
             throw new NullPointerException(("null storage data is detected"));
         }
         if(!freeSpaceFile(storage)){
-            throw new RuntimeException("there is no space in the storage: " + storage.getId());
+            throw new RuntimeException("there is no space in the storage: " + storage.getId() + "to file:" + file.getId());
         }
         if(!fileCheckForExist(storage, file)){
             throw new RuntimeException("file: " + file.getId() + " already exist in storage: " + storage.getId());
@@ -154,9 +144,7 @@ public class Controller {
         if (!typeCheck(storage, file)) {
             throw new RuntimeException("format file don't allowed: " + file.getId() + " to storage: " + storage.getId() );
         }
-        if (!fileCheck(file)) {
-            throw new RuntimeException("filename incorrect: "+ file.getId());
-        }
+
         if (!maxSizeReached(storage, file)) {
             throw new RuntimeException("there is not enough space in the storage: " + storage.getId() + " to adding file: " + file.getId());
 
