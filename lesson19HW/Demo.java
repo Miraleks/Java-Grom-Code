@@ -23,70 +23,71 @@ public class Demo {
 
         Storage storage1 = new Storage(123453145, files1, formatSupportedStorage1, "Ukraine", 6144);
 
-        System.out.println(file5.getId() + " " + file5.getName() + " " + file5.getFormat() + " " + file5.getSize());
+//        System.out.println(file5.getId() + " " + file5.getName() + " " + file5.getFormat() + " " + file5.getSize());
 
 
 
 
-//        try {
-//            controller.put(storage1, null);
-//        } catch (Exception e) {
-//            System.err.println("error: " + e.getMessage());
-//        }
-//        try {
-//            controller.put(storage1, file1);
-//        } catch (Exception e) {
-//            System.err.println("error: " + e.getMessage());
-//        }
-//        try {
-//            controller.put(storage1, file2);
-//        } catch (Exception e) {
-//            System.err.println("error: " + e.getMessage());
-//        }try {
-//            controller.put(storage1, file3);
-//        } catch (Exception e) {
-//            System.err.println("error: " + e.getMessage());
-//        }
-//        try {
-//            controller.put(storage1, file4);
-//        } catch (Exception e) {
-//            System.err.println("error: " + e.getMessage());
-//        }
-//        try {
-//            controller.put(storage1, file5);
-//        } catch (Exception e) {
-//            System.err.println("error: " + e.getMessage());
-//        }
-//        try {
-//            controller.put(storage1, file5);
-//        } catch (Exception e) {
-//            System.err.println("error: " + e.getMessage());
-//        }
-//        try {
-//            controller.put(storage1, file6);
-//        } catch (Exception e) {
-//            System.err.println("error: " + e.getMessage());
-//        }
-//        try {
-//            controller.put(storage1, file8);
-//        } catch (Exception e) {
-//            System.err.println("error: " + e.getMessage());
-//        }
-//        try {
-//            controller.delete(storage1, file7);
-//        } catch (Exception e) {
-//            System.err.println("error: " + e.getMessage());
-//        }
-//        try {
-//            controller.delete(storage1, file8);
-//        } catch (Exception e) {
-//            System.err.println("error: " + e.getMessage());
-//        }
-//        try {
-//            controller.delete(storage1, file6);
-//        } catch (Exception e) {
-//            System.err.println("error: " + e.getMessage());
-//        }
+
+        try {
+            controller.put(storage1, null);
+        } catch (Exception e) {
+            System.err.println("error: " + e.getMessage());
+        }
+        try {
+            controller.put(storage1, file1);
+        } catch (Exception e) {
+            System.err.println("error: " + e.getMessage());
+        }
+        try {
+            controller.put(storage1, file2);
+        } catch (Exception e) {
+            System.err.println("error: " + e.getMessage());
+        }try {
+            controller.put(storage1, file3);
+        } catch (Exception e) {
+            System.err.println("error: " + e.getMessage());
+        }
+        try {
+            controller.put(storage1, file4);
+        } catch (Exception e) {
+            System.err.println("error: " + e.getMessage());
+        }
+        try {
+            controller.put(storage1, file5);
+        } catch (Exception e) {
+            System.err.println("error: " + e.getMessage());
+        }
+        try {
+            controller.put(storage1, file5);
+        } catch (Exception e) {
+            System.err.println("error: " + e.getMessage());
+        }
+        try {
+            controller.put(storage1, file6);
+        } catch (Exception e) {
+            System.err.println("error: " + e.getMessage());
+        }
+        try {
+            controller.put(storage1, file8);
+        } catch (Exception e) {
+            System.err.println("error: " + e.getMessage());
+        }
+        try {
+            controller.delete(storage1, file7);
+        } catch (Exception e) {
+            System.err.println("error: " + e.getMessage());
+        }
+        try {
+            controller.delete(storage1, file8);
+        } catch (Exception e) {
+            System.err.println("error: " + e.getMessage());
+        }
+        try {
+            controller.delete(storage1, file6);
+        } catch (Exception e) {
+            System.err.println("error: " + e.getMessage());
+        }
 
 //        System.out.println(Arrays.deepToString(storage1.getFiles()));
 //        System.out.println(storage1.getFiles().length);
