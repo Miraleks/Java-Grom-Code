@@ -68,6 +68,9 @@ public class Controller {
     }
 
     public void transferFile(Storage storageFrom, Storage storageTo, long id) throws Exception {
+        if (storageFrom == null || storageTo == null) {
+            throw new NullPointerException("null data is detected");
+        }
         File[] filesFrom = storageFrom.getFiles();
         int counter = 0;
         boolean flag = false;
