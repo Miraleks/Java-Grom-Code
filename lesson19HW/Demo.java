@@ -24,6 +24,7 @@ public class Demo {
         Storage storage1 = new Storage(123453145, files1, formatSupportedStorage1, "Ukraine", 6144);
 
 //        System.out.println(file5.getId() + " " + file5.getName() + " " + file5.getFormat() + " " + file5.getSize());
+//        System.out.println(file6.getId() + " " + file6.getName() + " " + file6.getFormat() + " " + file6.getSize());
 
 
 
