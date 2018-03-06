@@ -1,5 +1,7 @@
 package lesson19HW;
 
+import static java.lang.Character.isLetterOrDigit;
+
 public class Controller {
 
     public void put(Storage storage, File file) throws Exception {
@@ -97,6 +99,14 @@ public class Controller {
         return (maxSize <= storage.getStorageSize());
     }
 
+    private boolean fileCheck(File file) {
+        char[] chars = file.getName().toCharArray();
+        if (chars.length > 10) return false;
+        for (char ch : chars)
+            if (!isLetterOrDigit(ch)) return false;
+        return true;
+    }
+
     private boolean freeSpaceFile(Storage storage){
         if(storage.getFiles() != null) {
             File[] files = storage.getFiles();
@@ -134,6 +144,9 @@ public class Controller {
         }
         if(storage.getFiles() == null) {
             throw new NullPointerException(("null storage data is detected"));
+        }
+        if(!fileCheck(file)) {
+            throw new RuntimeException("filename incorrect: " + + file.getId() + " to storage: " + storage.getId());
         }
         if(!freeSpaceFile(storage)){
             throw new RuntimeException("there is no space in the storage: " + storage.getId() + "to file:" + file.getId());

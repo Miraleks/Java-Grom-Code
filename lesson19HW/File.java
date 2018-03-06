@@ -1,7 +1,5 @@
 package lesson19HW;
 
-import static java.lang.Character.isLetterOrDigit;
-
 public class File {
     private long id;
     private String name;
@@ -10,12 +8,10 @@ public class File {
 
     public File (long id, String name, String format, long size) {
 
-        if(fileCheck(name)) {
-            this.id = id;
-            this.name = name;
-            this.format = format;
-            this.size = size;
-        }
+        this.id = id;
+        this.name = name;
+        this.format = format;
+        this.size = size;
 
     }
 
@@ -49,14 +45,6 @@ public class File {
 
     public void setSize(long size) {
         this.size = size;
-    }
-
-    private boolean fileCheck(String name) {
-        char[] chars = name.toCharArray();
-        if (chars.length > 10) return false;
-        for (char ch : chars)
-            if (!isLetterOrDigit(ch)) return false;
-        return true;
     }
 
     @Override
