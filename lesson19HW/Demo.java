@@ -22,7 +22,7 @@ public class Demo {
             File file3 = new File(1242136, "file3", "xls", 1024);
             File file4 = new File(1242137, "file4", "doc", 1024);
             File file5 = new File(1242138, "file5", "doc", 1024);
-            File file6 = new File(1242139, "file@6", "doc", 1024);
+            File file6 = new File(1242139, "file6", "doc", 1024);
             File file7 = new File(1242140, "file7", "dat", 1024);
             File file8 = new File(1242141, "file8", "doc", 1024);
 
