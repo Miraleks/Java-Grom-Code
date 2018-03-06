@@ -72,15 +72,18 @@ public class Controller {
         int counter = 0;
         boolean flag = false;
         for (File files : filesFrom) {
-            if (files.getId() == id) {
-                flag = true;
-                break;
+            if(files != null) {
+                if (files.getId() == id) {
+                    flag = true;
+                    break;
+                }
             }
             counter++;
         }
         if (!flag) {
             throw new RuntimeException("file didn't found in storage");
         } else {
+            dataTestForException(storageTo, filesFrom[counter]);
             put(storageTo, filesFrom[counter]);
             delete(storageFrom, filesFrom[counter]);
         }

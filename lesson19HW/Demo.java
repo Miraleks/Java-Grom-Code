@@ -18,10 +18,12 @@ public class Demo {
         String[] formatSupportedStorage1 = new String[]{"doc", "txt"};
 
         File[] files1 = new File[5];
+        File[] files2 = new File[5];
 
         Controller controller = new Controller();
 
         Storage storage1 = new Storage(123453145, files1, formatSupportedStorage1, "Ukraine", 6144);
+        Storage storage2 = new Storage(543210123, files2, formatSupportedStorage1, "Ukraine", 6145);
 
 //        System.out.println(file5.getId() + " " + file5.getName() + " " + file5.getFormat() + " " + file5.getSize());
 //        System.out.println(file6.getId() + " " + file6.getName() + " " + file6.getFormat() + " " + file6.getSize());
@@ -86,6 +88,11 @@ public class Demo {
         }
         try {
             controller.delete(storage1, file6);
+        } catch (Exception e) {
+            System.err.println("error: " + e.getMessage());
+        }
+        try {
+            controller.transferFile(storage1, storage2, 1242135);
         } catch (Exception e) {
             System.err.println("error: " + e.getMessage());
         }
