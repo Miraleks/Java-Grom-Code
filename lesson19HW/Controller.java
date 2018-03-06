@@ -1,52 +1,40 @@
 package lesson19HW;
 
-import static java.lang.Character.isLetterOrDigit;
-
 public class Controller {
 
     public void put(Storage storage, File file) throws Exception {
+        dataTestForException(storage, file);
 
-        try {
-            dataTest(storage, file);
-        } catch (Exception e) {
-            System.out.println("error: " + e.getMessage());
-        }
-        boolean done = false;
         File[] files = storage.getFiles();
-        for (int i = 0; i < files.length; i++) {
-            if (files[i] == null) {
+        for(int i = 0; i < files.length; i++){
+            if(files[i] == null) {
                 files[i] = file;
-                done = true;
+                break;
             }
         }
-        if (!done) {
-            File[] newFiles = new File[storage.getFiles().length + 1];
-            for (int i = 0; i < files.length; i++) {
-                newFiles[i] = files[i];
-            }
-            newFiles[files.length] = file;
-            storage.setFiles(newFiles);
-        }
+
     }
 
     public void delete(Storage storage, File file) throws Exception {
         if (file == null) {
-            throw new RuntimeException("null data is detected");
+            throw new NullPointerException("null data is detected");
         }
         File[] files = storage.getFiles();
+        boolean check = false;
         for (int i = 0; i < files.length; i++) {
-            if (files[i].getId() == file.getId()) {
+            if (files[i] != null &&  files[i].getId() == file.getId()) {
                 files[i] = null;
+                check = true;
             }
         }
-        if (files == storage.getFiles()) {
-            throw new RuntimeException("file not found in storage");
+        if (!check) {
+            throw new RuntimeException("file not found in storage: " + file.getId());
         } else storage.setFiles(files);
     }
 
     public void transferAll(Storage storageFrom, Storage storageTo) throws Exception {
         if (storageFrom.getFormatSupported() != storageTo.getFormatSupported()) {
-            throw new RuntimeException("storage incorrect");
+            throw new RuntimeException("storage incorrect from: " + storageFrom.getId() + " to: " + storageTo.getId());
         }
         long spaceValue = 0;
         File[] filesFrom = storageFrom.getFiles();
@@ -97,17 +85,27 @@ public class Controller {
     }
 
     private boolean maxSizeReached(Storage storage, File file) {
-        File[] files = storage.getFiles();
         long maxSize = file.getSize();
-        System.out.println("start from: " + maxSize);
-        for (File element : files) {
-            maxSize = maxSize + element.getSize();
-            System.out.println("add1");
+        if(storage.getFiles() != null) {
+            File[] files = storage.getFiles();
+            for (File element : files) {
+                if(element != null) {
+                    maxSize = maxSize + element.getSize();
+                }
+            }
         }
-        System.out.println("summ size: " + maxSize);
-        System.out.println("storage size: "+ storage.getStorageSize());
         return (maxSize <= storage.getStorageSize());
+    }
 
+    private boolean freeSpaceFile(Storage storage){
+        if(storage.getFiles() != null) {
+            File[] files = storage.getFiles();
+            for (File element : files) {
+                if (element == null) return true;
+            }
+            return false;
+        }
+        return true;
     }
 
     private boolean typeCheck(Storage storage, File file) {
@@ -118,27 +116,37 @@ public class Controller {
         return false;
     }
 
-    private boolean fileCheck(File file) {
-        char[] chars = file.getName().toCharArray();
-        if (chars.length > 10) return false;
-        for (char ch : chars)
-            if (!isLetterOrDigit(ch)) return false;
+    private boolean fileCheckForExist(Storage storage, File file){
+        if(storage.getFiles() != null) {
+            File[] files = storage.getFiles();
+            for(File element : files){
+                if(element != null) {
+                    if (element.getId() == file.getId()) return false;
+                }
+            }
+        }
         return true;
     }
 
-    private void dataTest(Storage storage, File file) {
+    private void dataTestForException(Storage storage, File file) {
         if (file == null) {
-            throw new RuntimeException("null data is detected");
-
+            throw new NullPointerException("null file data is detected");
+        }
+        if(storage.getFiles() == null) {
+            throw new NullPointerException(("null storage data is detected"));
+        }
+        if(!freeSpaceFile(storage)){
+            throw new RuntimeException("there is no space in the storage: " + storage.getId() + "to file:" + file.getId());
+        }
+        if(!fileCheckForExist(storage, file)){
+            throw new RuntimeException("file: " + file.getId() + " already exist in storage: " + storage.getId());
         }
         if (!typeCheck(storage, file)) {
-            throw new RuntimeException("format file don't allowed");
+            throw new RuntimeException("format file don't allowed: " + file.getId() + " to storage: " + storage.getId() );
         }
-        if (!fileCheck(file)) {
-            throw new RuntimeException("filename incorrect");
-        }
+
         if (!maxSizeReached(storage, file)) {
-            throw new RuntimeException("there is not enough space in the storage");
+            throw new RuntimeException("there is not enough space in the storage: " + storage.getId() + " to adding file: " + file.getId());
 
         }
 
