@@ -1,7 +1,5 @@
 package lesson19HW;
 
-import static java.lang.Character.isLetterOrDigit;
-
 public class Controller {
 
     public void put(Storage storage, File file) throws Exception {
