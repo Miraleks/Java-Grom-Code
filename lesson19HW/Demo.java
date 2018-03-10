@@ -22,7 +22,7 @@ public class Demo {
             File file3 = new File(1242136, "file3", "xls", 1024);
             File file4 = new File(1242137, "file4", "doc", 1024);
             File file5 = new File(1242138, "file5", "doc", 1024);
-            File file6 = new File(1242139, "file@6", "doc", 1024);
+            File file6 = new File(1242139, "file6", "doc", 1024);
             File file7 = new File(1242140, "file7", "dat", 1024);
             File file8 = new File(1242141, "file8", "doc", 1024);
 
@@ -58,21 +58,21 @@ public class Demo {
             System.err.println("error: " + e.getMessage());
         }
         try {
-            controller.put(storage1, file1 = new File(1242134, "file1", "doc", 1024));
+            controller.put(storage1, file1);
         } catch (Exception e) {
             System.err.println("error: " + e.getMessage());
         }
         try {
-            controller.put(storage1, file2 = new File(1242135, "file2", "doc", 1024));
+            controller.put(storage1, file2);
         } catch (Exception e) {
             System.err.println("error: " + e.getMessage());
         }try {
-            controller.put(storage1, file3 = new File(1242136, "file3", "xls", 1024));
+            controller.put(storage1, file3);
         } catch (Exception e) {
             System.err.println("error: " + e.getMessage());
         }
         try {
-            controller.put(storage1, file4 = new File(1242137, "file4", "doc", 1024));
+            controller.put(storage1, file4);
         } catch (Exception e) {
             System.err.println("error: " + e.getMessage());
         }

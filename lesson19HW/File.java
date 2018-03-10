@@ -8,9 +8,9 @@ public class File {
     private String format;
     private long size;
 
-    public File (long id, String name, String format, long size) throws Exception {
+    public File (long id, String name, String format, long size){
 
-        if (fileCheck(name)) throw new RuntimeException("incorrect file name");
+        if (!fileCheck(name)) throw new RuntimeException("incorrect file name");
         this.id = id;
         this.name = name;
         this.format = format;

@@ -5,7 +5,7 @@ import static java.lang.Character.isLetterOrDigit;
 public class Controller {
 
     public void put(Storage storage, File file) throws Exception {
-        dataTestForException(storage, file);
+        validate(storage, file);
 
         File[] files = storage.getFiles();
         for(int i = 0; i < files.length; i++){
@@ -86,7 +86,7 @@ public class Controller {
         if (!flag) {
             throw new RuntimeException("file didn't found in storage");
         } else {
-            dataTestForException(storageTo, filesFrom[counter]);
+            validate(storageTo, filesFrom[counter]);
             put(storageTo, filesFrom[counter]);
             delete(storageFrom, filesFrom[counter]);
         }
@@ -136,12 +136,9 @@ public class Controller {
         return true;
     }
 
-    private void dataTestForException(Storage storage, File file) {
-        if (file == null) {
+    private void validate(Storage storage, File file) {
+        if (file == null || storage.getFiles() == null) {
             throw new NullPointerException("null file data is detected");
-        }
-        if(storage.getFiles() == null) {
-            throw new NullPointerException(("null storage data is detected"));
         }
          if(!freeSpaceFile(storage)){
             throw new RuntimeException("there is no space in the storage: " + storage.getId() + "to file:" + file.getId());
@@ -152,11 +149,8 @@ public class Controller {
         if (!typeCheck(storage, file)) {
             throw new RuntimeException("format file don't allowed: " + file.getId() + " to storage: " + storage.getId() );
         }
-
         if (!maxSizeReached(storage, file)) {
             throw new RuntimeException("there is not enough space in the storage: " + storage.getId() + " to adding file: " + file.getId());
-
         }
-
     }
 }
