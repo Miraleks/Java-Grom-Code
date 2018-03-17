@@ -98,6 +98,7 @@ public class TransactionDAO {
             if(i+1 == transactions.length && transactions[i] != null) {
                 throw new InternalServerException("Transaction " + transaction.getId() + " can't be saved. No free space.");
             }
+            if(transactions[i] == null) break;
         }
 
 //        boolean cityCheckFlag = false;
@@ -109,7 +110,9 @@ public class TransactionDAO {
 //        if(cityCheckFlag == false){
 //            throw new BadRequestException("Incorrect city for transaction " + transaction.getId());
 //        }
+
         for(int i = 0; i < utils.getCities().length; i++){
+            if(transaction.getCity() == utils.getCities()[i]) break;
             if(i+1 == utils.getCities().length && transaction.getCity() != utils.getCities()[i]){
                 throw new BadRequestException("Incorrect city for transaction " + transaction.getId());
             }
