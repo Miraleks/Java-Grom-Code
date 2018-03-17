@@ -36,9 +36,23 @@ public class TransactionDAO {
     }
 
     public Transaction[] transactionList() {
-
-
-        return transactions;
+        int index = 0;
+        for (Transaction tr : transactions) {
+            if (tr != null) {
+                index++;
+            }
+        }
+        if (index > 0) {
+            Transaction[] trans = new Transaction[index];
+            int counter = 0;
+            for (Transaction transaction : transactions) {
+                if (transaction != null) {
+                    trans[counter] = transaction;
+                }
+                counter++;
+            }
+            return trans;
+        } else return null;
 
     }
 
