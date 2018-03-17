@@ -21,6 +21,12 @@ public class TransactionDAO {
         validate(transaction);
 
         for(Transaction tr : transactions){
+            if(tr.equals(transaction)){
+                throw new BadRequestException("Transaction " + transaction.getId() + "is already exist");
+            }
+        }
+
+        for(Transaction tr : transactions){
             if(tr == null){
                 break;
             }else index++;
