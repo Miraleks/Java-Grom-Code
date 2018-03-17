@@ -21,7 +21,7 @@ public class TransactionDAO {
         validate(transaction);
 
         for(Transaction tr : transactions){
-            if(tr.equals(transaction)){
+            if(transaction.equals(tr)){
                 throw new BadRequestException("Transaction " + transaction.getId() + "is already exist");
             }
         }
@@ -33,7 +33,6 @@ public class TransactionDAO {
         }
         transactions[index] = transaction;
         return transactions[index];
-
     }
 
 
