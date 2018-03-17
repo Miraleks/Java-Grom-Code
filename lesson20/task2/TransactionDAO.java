@@ -14,6 +14,10 @@ public class TransactionDAO {
     public Transaction save(Transaction transaction) throws Exception{
         int index = 0;
 
+        if (transaction == null) {
+            throw new NullPointerException("null data is detected");
+        }
+
         validate(transaction);
 
         for(Transaction tr : transactions){
@@ -26,7 +30,34 @@ public class TransactionDAO {
 
     }
 
+
+
+    Transaction[] transactionList() {
+
+
+
+
+        return null;
+
+    }
+
+    Transaction[] transactionList(String city){
+
+
+        return null;
+
+    }
+
+    Transaction[] transactionList(int amount){
+
+
+
+        return null;
+
+    }
+
     private void validate(Transaction transaction) throws Exception {
+
         if(transaction.getAmount() > utils.getLimitSimpleTransactionAmount())
             throw new LimitExceeded("Transaction limit exceed "+ transaction.getId() + ". Can't be saved");
 
@@ -64,28 +95,6 @@ public class TransactionDAO {
         }
     }
 
-    Transaction[] transactionList() {
-
-
-        return null;
-
-    }
-
-    Transaction[] transactionList(String city){
-
-
-        return null;
-
-    }
-
-    Transaction[] transactionList(int amount){
-
-
-
-        return null;
-
-    }
-
     private Transaction[] getTransactionPerDay(Date dateOfCurTransaction){
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(dateOfCurTransaction);
@@ -120,8 +129,5 @@ public class TransactionDAO {
         }
         return result;
     }
-
-
-
 
 }
