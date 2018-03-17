@@ -1,6 +1,6 @@
 package lesson20.task2;
 
-import lesson20.task2.exception.BadRequestExeption;
+import lesson20.task2.exception.BadRequestException;
 import lesson20.task2.exception.InternalServerException;
 import lesson20.task2.exception.LimitExceeded;
 
@@ -91,7 +91,7 @@ public class TransactionDAO {
             }
         }
         if(cityCheckFlag == false){
-            throw new BadRequestExeption("Incorrect city for transaction " + transaction.getId());
+            throw new BadRequestException("Incorrect city for transaction " + transaction.getId());
         }
     }
 
