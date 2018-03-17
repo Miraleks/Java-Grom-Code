@@ -35,15 +35,14 @@ public class TransactionDAO {
         return transactions[index];
     }
 
-    Transaction[] transactionList() {
-
+    public Transaction[] transactionList() {
 
 
         return transactions;
 
     }
 
-    Transaction[] transactionList(String city) throws Exception{
+    public Transaction[] transactionList(String city) throws Exception {
 
         for (int i = 0; i < utils.getCities().length; i++) {
             if (city == utils.getCities()[i]) break;
@@ -53,29 +52,26 @@ public class TransactionDAO {
         }
 
         int index = 0;
-
         for (Transaction tr : transactions) {
             if (tr.getCity() == city) index++;
         }
-
-        if(index > 0) {
+        if (index > 0) {
             Transaction[] transactionsByCity = new Transaction[index];
             int counter = 0;
-            for(Transaction transaction :transactions){
-                if(transaction.getCity() == city){
+            for (Transaction transaction : transactions) {
+                if (transaction.getCity() == city) {
                     transactionsByCity[counter] = transaction;
                 }
                 counter++;
             }
             return transactionsByCity;
-        }
-        else {
+        } else {
             throw new BadRequestException("No transaction from " + city);
         }
 
     }
 
-    Transaction[] transactionList(int amount) {
+    public Transaction[] transactionList(int amount) {
 
 
         return null;
@@ -90,7 +86,6 @@ public class TransactionDAO {
         int sum = 0;
         int count = 0;
 
-
         for (Transaction tr : getTransactionPerDay(transaction.getDateCreated())) {
             sum += tr.getAmount();
             count++;
@@ -104,31 +99,12 @@ public class TransactionDAO {
             throw new LimitExceeded("Transaction limit per day count exceed " + transaction.getId() + ". Can't be saved");
         }
 
-//        boolean freeSpaceFlag = false;
-//        for(Transaction tr : transactions){
-//            if(tr == null) freeSpaceFlag = true;
-//        }
-//        if(freeSpaceFlag == false){
-//            throw new InternalServerException("Transaction " + transaction.getId() + " can't be saved. No free space.");
-//        }
-
         for (int i = 0; i < transactions.length; i++) {
             if (i + 1 == transactions.length && transactions[i] != null) {
                 throw new InternalServerException("Transaction " + transaction.getId() + " can't be saved. No free space.");
             }
             if (transactions[i] == null) break;
         }
-
-//        boolean cityCheckFlag = false;
-//        for(String cities: utils.getCities()){
-//            if(cities == transaction.getCity()){
-//                cityCheckFlag = true;
-//            }
-//        }
-//        if(cityCheckFlag == false){
-//            throw new BadRequestException("Incorrect city for transaction " + transaction.getId());
-//        }
-
         for (int i = 0; i < utils.getCities().length; i++) {
             if (transaction.getCity() == utils.getCities()[i]) break;
             if (i + 1 == utils.getCities().length && transaction.getCity() != utils.getCities()[i]) {
