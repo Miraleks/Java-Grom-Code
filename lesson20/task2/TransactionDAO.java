@@ -37,14 +37,18 @@ public class TransactionDAO {
 
     Transaction[] transactionList() {
 
-
-
-
-        return null;
+        return transactions;
 
     }
 
     Transaction[] transactionList(String city){
+
+        int index = 0;
+
+        for(Transaction tr : transactions){
+            if(tr.getCity() == city) index ++;
+        }
+
 
 
         return null;
@@ -66,8 +70,8 @@ public class TransactionDAO {
 
         int sum = 0;
         int count = 0;
-        boolean freeSpaceFlag = false;
-        boolean cityCheckFlag = false;
+
+
 
         for(Transaction tr : getTransactionPerDay(transaction.getDateCreated())){
             sum += tr.getAmount();
@@ -82,19 +86,33 @@ public class TransactionDAO {
             throw new LimitExceeded("Transaction limit per day count exceed "+ transaction.getId() + ". Can't be saved");
         }
 
-        for(Transaction tr : transactions){
-            if(tr == null) freeSpaceFlag = true;
-        }
-        if(freeSpaceFlag == false){
-            throw new InternalServerException("Transaction " + transaction.getId() + " can't be saved. No free space.");
-        }
-        for(String cities: utils.getCities()){
-            if(cities == transaction.getCity()){
-                cityCheckFlag = true;
+//        boolean freeSpaceFlag = false;
+//        for(Transaction tr : transactions){
+//            if(tr == null) freeSpaceFlag = true;
+//        }
+//        if(freeSpaceFlag == false){
+//            throw new InternalServerException("Transaction " + transaction.getId() + " can't be saved. No free space.");
+//        }
+
+        for(int i = 0; i < transactions.length; i++){
+            if(i+1 == transactions.length && transactions[i] != null) {
+                throw new InternalServerException("Transaction " + transaction.getId() + " can't be saved. No free space.");
             }
         }
-        if(cityCheckFlag == false){
-            throw new BadRequestException("Incorrect city for transaction " + transaction.getId());
+
+//        boolean cityCheckFlag = false;
+//        for(String cities: utils.getCities()){
+//            if(cities == transaction.getCity()){
+//                cityCheckFlag = true;
+//            }
+//        }
+//        if(cityCheckFlag == false){
+//            throw new BadRequestException("Incorrect city for transaction " + transaction.getId());
+//        }
+        for(int i = 0; i < utils.getCities().length; i++){
+            if(i+1 == utils.getCities().length && transaction.getCity() != utils.getCities()[i]){
+                throw new BadRequestException("Incorrect city for transaction " + transaction.getId());
+            }
         }
     }
 
