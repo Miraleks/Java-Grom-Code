@@ -35,7 +35,7 @@ public class TransactionDAO {
         return transactions[index];
     }
 
-    public Transaction[] transactionList() {
+    public Transaction[] transactionList() throws Exception{
         int index = 0;
         for (Transaction tr : transactions) {
             if (tr != null) {
@@ -52,7 +52,7 @@ public class TransactionDAO {
                 counter++;
             }
             return trans;
-        } else return null;
+        } else throw new InternalServerException("Transaction list is empty");
 
     }
 
