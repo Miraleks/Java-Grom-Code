@@ -94,10 +94,25 @@ public class TransactionDAO {
         }
     }
 
-    public Transaction[] transactionList(int amount) {
+    public Transaction[] transactionList(int amount) throws Exception{
 
-
-        return null;
+        int index = 0;
+        for (Transaction tr : transactions) {
+            if (tr.getAmount() == amount) index++;
+        }
+        if (index > 0) {
+            Transaction[] transactionsByAmount = new Transaction[index];
+            int counter = 0;
+            for (Transaction transaction : transactions) {
+                if (transaction.getAmount() == amount) {
+                    transactionsByAmount[counter] = transaction;
+                }
+                counter++;
+            }
+            return transactionsByAmount;
+        } else {
+            throw new BadRequestException("Transactions with this " + amount + " are not found.");
+        }
 
     }
 
