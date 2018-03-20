@@ -12,13 +12,13 @@ public class TransactionDAO {
     private Utils utils = new Utils();
 
     public Transaction save(Transaction transaction) throws Exception {
-        int index = 0;
 
         if (transaction == null) {
             throw new NullPointerException("null data is detected");
         }
 
         validate(transaction);
+        checkTransactionCity(transaction);
 
         for (Transaction tr : transactions) {
             if (transaction.equals(tr)) {
@@ -26,13 +26,23 @@ public class TransactionDAO {
             }
         }
 
+        int index = 0;
         for (Transaction tr : transactions) {
             if (tr == null) {
-                break;
-            } else index++;
+                transactions[index] = transaction;
+                return transaction;
+            }
+            index++;
         }
-        transactions[index] = transaction;
-        return transactions[index];
+        throw new InternalServerException("There is no free space to save transaction. Transaction " + transaction.getId() + " can't be saved");
+
+//        for(Transaction tr : transactions) {
+//            if (tr == null) {
+//                break;
+//            } else index++;
+//        }
+//        transactions[index] = transaction;
+//        return transactions[index];
     }
 
     public Transaction[] transactionList() throws Exception{
@@ -82,7 +92,6 @@ public class TransactionDAO {
         } else {
             throw new BadRequestException("No transaction from " + city);
         }
-
     }
 
     public Transaction[] transactionList(int amount) {
@@ -125,6 +134,15 @@ public class TransactionDAO {
                 throw new BadRequestException("Incorrect city for transaction " + transaction.getId());
             }
         }
+    }
+
+    private void checkTransactionCity(Transaction transaction) throws BadRequestException {
+        for (String city : utils.getCities()) {
+            if (city.equals(transaction.getCity()))
+                return;
+        }
+
+        throw new BadRequestException("Transaction cannot be made from city " + transaction.getCity() + ". Transaction " + transaction.getId() + " can't be saved");
     }
 
     private Transaction[] getTransactionPerDay(Date dateOfCurTransaction) {
