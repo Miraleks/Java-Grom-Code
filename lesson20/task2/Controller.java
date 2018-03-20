@@ -8,27 +8,27 @@ public class Controller {
         return transactionDAO.save(transaction);
     }
 
-    Transaction[] transactionList() {
+    Transaction[] transactionList() throws Exception {
 
 
 
-        return null;
-
-    }
-
-    Transaction[] transactionList(String city){
-
-
-
-        return null;
+        return transactionDAO.transactionList();
 
     }
 
-    Transaction[] transactionList(int amount){
+    Transaction[] transactionList(String city) throws Exception{
 
 
 
-        return null;
+        return transactionDAO.transactionList(city);
+
+    }
+
+    Transaction[] transactionList(int amount) throws Exception{
+
+
+
+        return transactionDAO.transactionList(amount);
 
     }
 
