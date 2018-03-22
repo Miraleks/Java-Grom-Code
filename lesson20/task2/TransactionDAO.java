@@ -83,7 +83,7 @@ public class TransactionDAO {
                 if(tr.getCity().equals(city)) index++;
             }
         }
-        if (index > 0) {
+
             Transaction[] transactionsByCity = new Transaction[index];
             int counter = 0;
             for (Transaction transaction : transactions) {
@@ -95,9 +95,7 @@ public class TransactionDAO {
                 }
             }
             return transactionsByCity;
-        } else {
-            throw new BadRequestException("No transaction from " + city);
-        }
+
     }
 
     public Transaction[] transactionList(int amount) throws Exception{
@@ -108,7 +106,7 @@ public class TransactionDAO {
         for (Transaction tr : transactions) {
             if (tr != null && tr.getAmount() == amount) index++;
         }
-        if (index > 0) {
+
             Transaction[] transactionsByAmount = new Transaction[index];
             int counter = 0;
             for (Transaction transaction : transactions) {
@@ -118,9 +116,7 @@ public class TransactionDAO {
                 counter++;
             }
             return transactionsByAmount;
-        } else {
-            throw new BadRequestException("Transactions with this " + amount + " are not found.");
-        }
+
 
     }
 
