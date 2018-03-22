@@ -59,7 +59,7 @@ public class TransactionDAO {
                 counter++;
             }
             return trans;
-        } else throw new InternalServerException("Transaction list is empty");
+        } else return transactions;
 
     }
 
