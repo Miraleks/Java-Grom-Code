@@ -72,7 +72,7 @@ public class TransactionDAO {
 
     public Transaction[] transactionList(String city) throws Exception {
 
-        if(transactions == null) return null;
+        if(transactions == null || utils == null) return null;
 
         if(city == null) throw new NullPointerException("Null data in sort by city is detected");
 
@@ -108,13 +108,13 @@ public class TransactionDAO {
 
         int index = 0;
         for (Transaction tr : transactions) {
-            if (tr.getAmount() == amount) index++;
+            if (tr != null && tr.getAmount() == amount) index++;
         }
         if (index > 0) {
             Transaction[] transactionsByAmount = new Transaction[index];
             int counter = 0;
             for (Transaction transaction : transactions) {
-                if (transaction.getAmount() == amount) {
+                if (transaction != null && transaction.getAmount() == amount) {
                     transactionsByAmount[counter] = transaction;
                 }
                 counter++;
