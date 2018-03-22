@@ -112,8 +112,9 @@ public class TransactionDAO {
             for (Transaction transaction : transactions) {
                 if (transaction != null && transaction.getAmount() == amount) {
                     transactionsByAmount[counter] = transaction;
+                    counter++;
                 }
-                counter++;
+
             }
             return transactionsByAmount;
 
