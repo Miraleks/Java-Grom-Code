@@ -145,18 +145,6 @@ public class TransactionDAO {
             throw new LimitExceeded("Transaction limit per day count exceed " + transaction.getId() + ". Can't be saved");
         }
 
-        for (int i = 0; i < transactions.length; i++) {
-            if (i + 1 == transactions.length && transactions[i] != null) {
-                throw new InternalServerException("Transaction " + transaction.getId() + " can't be saved. No free space.");
-            }
-            if (transactions[i] == null) break;
-        }
-        for (int i = 0; i < utils.getCities().length; i++) {
-            if (transaction.getCity() == utils.getCities()[i]) break;
-            if (i + 1 == utils.getCities().length && transaction.getCity() != utils.getCities()[i]) {
-                throw new BadRequestException("Incorrect city for transaction " + transaction.getId());
-            }
-        }
     }
 
     private void checkTransactionCity(Transaction transaction) throws BadRequestException {
