@@ -72,7 +72,7 @@ public class TransactionDAO {
         for (int i = 0; i < utils.getCities().length; i++) {
             if (city.equals(utils.getCities()[i])) break;
 
-            if (i + 1 == utils.getCities().length && city != utils.getCities()[i]) {
+            if (i + 1 == utils.getCities().length && !(utils.getCities()[i].equals(city))) {
                 throw new BadRequestException("Incorrect city for transaction " + city);
             }
         }
