@@ -49,7 +49,7 @@ public class TransactionDAO {
                 index++;
             }
         }
-        if (index > 0) {
+
             Transaction[] trans = new Transaction[index];
             int counter = 0;
             for (Transaction transaction : transactions) {
@@ -59,7 +59,7 @@ public class TransactionDAO {
                 counter++;
             }
             return trans;
-        } else return transactions;
+
 
     }
 
