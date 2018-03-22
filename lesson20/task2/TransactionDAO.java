@@ -38,13 +38,6 @@ public class TransactionDAO {
         }
         throw new InternalServerException("There is no free space to save transaction. Transaction " + transaction.getId() + " can't be saved");
 
-//        for(Transaction tr : transactions) {
-//            if (tr == null) {
-//                break;
-//            } else index++;
-//        }
-//        transactions[index] = transaction;
-//        return transactions[index];
     }
 
     public Transaction[] transactionList() throws Exception{
@@ -77,7 +70,7 @@ public class TransactionDAO {
         if(city == null) throw new NullPointerException("Null data in sort by city is detected");
 
         for (int i = 0; i < utils.getCities().length; i++) {
-            if (city == utils.getCities()[i]) break;
+            if (city.equals(utils.getCities()[i])) break;
             if (i + 1 == utils.getCities().length && city != utils.getCities()[i]) {
                 throw new BadRequestException("Incorrect city for transaction " + city);
             }
@@ -85,13 +78,13 @@ public class TransactionDAO {
 
         int index = 0;
         for (Transaction tr : transactions) {
-            if (tr.getCity() == city) index++;
+            if (tr.getCity().equals(city)) index++;
         }
         if (index > 0) {
             Transaction[] transactionsByCity = new Transaction[index];
             int counter = 0;
             for (Transaction transaction : transactions) {
-                if (transaction.getCity() == city) {
+                if (transaction.getCity().equals(city)) {
                     transactionsByCity[counter] = transaction;
                 }
                 counter++;
