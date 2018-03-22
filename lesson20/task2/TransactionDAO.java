@@ -69,13 +69,13 @@ public class TransactionDAO {
 
         if(city == null) throw new NullPointerException("Null data in sort by city is detected");
 
-        for (int i = 0; i < utils.getCities().length; i++) {
-            if (city.equals(utils.getCities()[i])) break;
-
-            if (i + 1 == utils.getCities().length && !(utils.getCities()[i].equals(city))) {
-                throw new BadRequestException("Incorrect city for transaction " + city);
-            }
-        }
+//        for (int i = 0; i < utils.getCities().length; i++) {
+//            if (city.equals(utils.getCities()[i])) break;
+//
+//            if (i + 1 == utils.getCities().length && !(utils.getCities()[i].equals(city))) {
+//                throw new BadRequestException("Incorrect city for transaction " + city);
+//            }
+//        }
 
         int index = 0;
         for (Transaction tr : transactions) {
