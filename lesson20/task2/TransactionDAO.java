@@ -8,16 +8,16 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class TransactionDAO {
-    private Transaction[] transactions = new Transaction[10];
-    private Utils utils = new Utils();
+    private static Transaction[] transactions = new Transaction[10];
 
-    public Transaction save(Transaction transaction) throws Exception {
+
+    public static Transaction save(Transaction transaction) throws Exception {
 
         if (transaction == null) {
             throw new NullPointerException("null data is detected");
         }
 
-        if(transactions == null) return null;
+        if (transactions == null) return null;
 
         validate(transaction);
         checkTransactionCity(transaction);
@@ -38,79 +38,80 @@ public class TransactionDAO {
         throw new InternalServerException("There is no free space to save transaction. Transaction " + transaction.getId() + " can't be saved");
     }
 
-    public Transaction[] transactionList() throws Exception{
+    public static Transaction[] transactionList() throws Exception {
 
-        if(transactions == null) return null;
+        if (transactions == null) return null;
         int index = 0;
         for (Transaction tr : transactions) {
             if (tr != null) {
                 index++;
             }
         }
-            Transaction[] trans = new Transaction[index];
-            int counter = 0;
-            for (Transaction transaction : transactions) {
-                if (transaction != null) {
-                    trans[counter] = transaction;
-                }
-                counter++;
+        Transaction[] trans = new Transaction[index];
+        int counter = 0;
+        for (Transaction transaction : transactions) {
+            if (transaction != null) {
+                trans[counter] = transaction;
             }
-            return trans;
+            counter++;
+        }
+        return trans;
     }
 
-    public Transaction[] transactionList(String city) throws Exception {
+    public static Transaction[] transactionList(String city) throws Exception {
 
-        if(transactions == null || utils == null) throw new NullPointerException("Null data in sort by city is detected");
+        if (transactions == null)
+            throw new NullPointerException("Null data in sort by city is detected");
 
-        if(city == null) throw new NullPointerException("Null data in sort by city is detected");
+        if (city == null) throw new NullPointerException("Null data in sort by city is detected");
 
         int index = 0;
         for (Transaction tr : transactions) {
-            if (tr != null){
-                if(tr.getCity().equals(city)) index++;
+            if (tr != null) {
+                if (tr.getCity().equals(city)) index++;
             }
         }
 
-            Transaction[] transactionsByCity = new Transaction[index];
-            int counter = 0;
-            for (Transaction transaction : transactions) {
-                if(transaction != null) {
-                    if (transaction.getCity().equals(city)) {
-                        transactionsByCity[counter] = transaction;
-                    }
-                    counter++;
+        Transaction[] transactionsByCity = new Transaction[index];
+        int counter = 0;
+        for (Transaction transaction : transactions) {
+            if (transaction != null) {
+                if (transaction.getCity().equals(city)) {
+                    transactionsByCity[counter] = transaction;
                 }
+                counter++;
             }
-            return transactionsByCity;
+        }
+        return transactionsByCity;
 
     }
 
-    public Transaction[] transactionList(int amount) throws Exception{
+    public static Transaction[] transactionList(int amount) throws Exception {
 
-        if(transactions == null || amount == 0) return null;
+        if (transactions == null || amount == 0) return null;
 
         int index = 0;
         for (Transaction tr : transactions) {
             if (tr != null && tr.getAmount() == amount) index++;
         }
 
-            Transaction[] transactionsByAmount = new Transaction[index];
-            int counter = 0;
-            for (Transaction transaction : transactions) {
-                if (transaction != null && transaction.getAmount() == amount) {
-                    transactionsByAmount[counter] = transaction;
-                    counter++;
-                }
-
+        Transaction[] transactionsByAmount = new Transaction[index];
+        int counter = 0;
+        for (Transaction transaction : transactions) {
+            if (transaction != null && transaction.getAmount() == amount) {
+                transactionsByAmount[counter] = transaction;
+                counter++;
             }
-            return transactionsByAmount;
+
+        }
+        return transactionsByAmount;
 
 
     }
 
-    private void validate(Transaction transaction) throws Exception {
+    private static void validate(Transaction transaction) throws Exception {
 
-        if (transaction.getAmount() > utils.getLimitSimpleTransactionAmount())
+        if (transaction.getAmount() > Utils.getLimitSimpleTransactionAmount())
             throw new LimitExceeded("Transaction limit exceed " + transaction.getId() + ". Can't be saved");
 
         int sum = 0;
@@ -121,18 +122,18 @@ public class TransactionDAO {
             count++;
         }
 
-        if (sum + transaction.getAmount() > utils.getLimitTransactionsPerDayAmount()) {
+        if (sum + transaction.getAmount() > Utils.getLimitTransactionsPerDayAmount()) {
             throw new LimitExceeded("Transaction limit per day amount exceed " + transaction.getId() + ". Can't be saved");
         }
 
-        if (count >= utils.getLimitTransactionsPerDayCount()) {
+        if (count >= Utils.getLimitTransactionsPerDayCount()) {
             throw new LimitExceeded("Transaction limit per day count exceed " + transaction.getId() + ". Can't be saved");
         }
 
     }
 
-    private void checkTransactionCity(Transaction transaction) throws BadRequestException {
-        for (String city : utils.getCities()) {
+    private static void checkTransactionCity(Transaction transaction) throws BadRequestException {
+        for (String city : Utils.getCities()) {
             if (city.equals(transaction.getCity()))
                 return;
         }
@@ -140,7 +141,7 @@ public class TransactionDAO {
         throw new BadRequestException("Transaction cannot be made from city " + transaction.getCity() + ". Transaction " + transaction.getId() + " can't be saved");
     }
 
-    private Transaction[] getTransactionPerDay(Date dateOfCurTransaction) {
+    private static Transaction[] getTransactionPerDay(Date dateOfCurTransaction) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(dateOfCurTransaction);
         int month = calendar.get(Calendar.MONTH);
