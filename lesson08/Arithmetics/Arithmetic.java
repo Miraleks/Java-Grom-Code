@@ -16,7 +16,7 @@ public class Arithmetic {
             if (el < min)
                 min = el;
         }
-        //System.out.println("min = "+ min);
+        //Sys.out.println("min = "+ min);
         return min;
     }
 
@@ -26,7 +26,7 @@ public class Arithmetic {
             if (el > max)
                 max = el;
         }
-        //System.out.println("max = "+ max);
+        //Sys.out.println("max = "+ max);
         return max;
     }
 

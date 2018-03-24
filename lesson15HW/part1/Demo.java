@@ -36,7 +36,7 @@ public class Demo {
         userRepository.delete(1003);
         userRepository.delete(0);
 
-        //System.out.println("User delete: user6");
+        //Sys.out.println("User delete: user6");
 
         System.out.println(Arrays.deepToString(userRepository.users));
     }

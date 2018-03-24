@@ -12,23 +12,23 @@ public class Demo {
         String address5 = "https://www.someaddress.org";
 
 
-//        System.out.println("countWords");
-//        System.out.println(Solution.countWords(test));
-//        System.out.println(Solution.countWords(test1));
-//        System.out.println(Solution.countWords(test2));
+//        Sys.out.println("countWords");
+//        Sys.out.println(Solution.countWords(test));
+//        Sys.out.println(Solution.countWords(test1));
+//        Sys.out.println(Solution.countWords(test2));
 //
-//        System.out.println("maxWord");
-//        System.out.println(Solution.maxWord(test)); //something
-//        System.out.println(Solution.maxWord(test1)); // null
-//        System.out.println(Solution.maxWord(test2)); // word
-//        System.out.println("minWord");
-//        System.out.println(Solution.minWord(test)); //is
-//        System.out.println(Solution.minWord(test1)); // null
-//        System.out.println(Solution.minWord(test2)); // is
-//        System.out.println("mostCountedWord");
-//        System.out.println(Solution.mostCountedWord(test)); //sdf
-//        System.out.println(Solution.mostCountedWord(test1)); //null
-//        System.out.println(Solution.mostCountedWord(test2)); //is
+//        Sys.out.println("maxWord");
+//        Sys.out.println(Solution.maxWord(test)); //something
+//        Sys.out.println(Solution.maxWord(test1)); // null
+//        Sys.out.println(Solution.maxWord(test2)); // word
+//        Sys.out.println("minWord");
+//        Sys.out.println(Solution.minWord(test)); //is
+//        Sys.out.println(Solution.minWord(test1)); // null
+//        Sys.out.println(Solution.minWord(test2)); // is
+//        Sys.out.println("mostCountedWord");
+//        Sys.out.println(Solution.mostCountedWord(test)); //sdf
+//        Sys.out.println(Solution.mostCountedWord(test1)); //null
+//        Sys.out.println(Solution.mostCountedWord(test2)); //is
 
         System.out.println("1: " + Solution.validate(address1));
         System.out.println("2: " + Solution.validate(address2));

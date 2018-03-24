@@ -31,13 +31,13 @@ public class Main {
         }
 
 
-        /*System.out.println("before: " + firstEUBankUser.getBalance());
-        System.out.println(firstEUBankUser.getBank());
-        System.out.println("salary: " + firstEUBankUser.getSalary());
-        System.out.println("limit: " + firstEUBankUser.getBank().getLimitOfFunding());
+        /*Sys.out.println("before: " + firstEUBankUser.getBalance());
+        Sys.out.println(firstEUBankUser.getBank());
+        Sys.out.println("salary: " + firstEUBankUser.getSalary());
+        Sys.out.println("limit: " + firstEUBankUser.getBank().getLimitOfFunding());
 
         bankSystem.paySalary(firstEUBankUser);
-        System.out.println("after: " + firstEUBankUser.getBalance());*/
+        Sys.out.println("after: " + firstEUBankUser.getBalance());*/
 
     }
     /*private static void userOperations(User user, int amount){
@@ -49,21 +49,21 @@ public class Main {
 
     private static void userDraw(User user, int amount, BankSystem bankSystem){
         bankSystem.withdraw(user, amount);
-        System.out.println(user.getBalance());
+        Sys.out.println(user.getBalance());
     }
     private static void userFund(User user, int amount, BankSystem bankSystem){
         bankSystem.fund(user, amount);
-        System.out.println(user.getBalance());
+        Sys.out.println(user.getBalance());
     }
     private static void userTransfer(User fromUser, User toUser, int amount){
         BankSystem bankSystem = new UkrainianBankSystem();
         bankSystem.transferMoney(fromUser, toUser, amount);
-        System.out.println("fromUser balance: " + fromUser.getBalance());
-        System.out.println("toUser balance: " + toUser.getBalance());
+        Sys.out.println("fromUser balance: " + fromUser.getBalance());
+        Sys.out.println("toUser balance: " + toUser.getBalance());
     }
     private static void userPaySalary(User user){
         fund(user, user.getSalary());
-        System.out.println(user.getBalance());
+        Sys.out.println(user.getBalance());
     }*/
 
 }

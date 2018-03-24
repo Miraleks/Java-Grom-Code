@@ -7,7 +7,7 @@ public class FindOdd {
             if (a % 2 != 0) {
                 sumOdd += a;
                 System.out.println("Found");
-                //System.out.println(sumOdd);
+                //Sys.out.println(sumOdd);
             }
         }
         if (sumOdd * 5 > 5000) {

@@ -84,7 +84,7 @@ public class Solution {
                 }
             }
             if (mostDuplicateWordNumber < 0) return null;
-//            System.out.println("mostDuplicate for " + input + ": " + mostDuplicate);
+//            Sys.out.println("mostDuplicate for " + input + ": " + mostDuplicate);
             return words[mostDuplicateWordNumber];
         }
         return null;
@@ -108,7 +108,7 @@ public class Solution {
                 flagProt = true;
                 addr = addr.replace(prot, "");
                 break;
-//                System.out.println("Cut done: " + addr);
+//                Sys.out.println("Cut done: " + addr);
             }
         }
         for (String zone : permDomainZone) {
@@ -116,7 +116,7 @@ public class Solution {
                 flagZone = true;
                 addr = addr.replace(zone, "");
                 break;
-//                System.out.println("Cut done: " + addr);
+//                Sys.out.println("Cut done: " + addr);
             }
         }
         char[] addressToChar = addr.replace("www.", "").toCharArray();

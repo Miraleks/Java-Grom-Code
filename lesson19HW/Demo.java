@@ -42,11 +42,11 @@ public class Demo {
 //            controller.transferFile(storage1, storage2, 1242135);
 //
 //        }catch (Exception e){
-//            System.err.println("error: " + e.getMessage());
+//            Sys.err.println("error: " + e.getMessage());
 //        }
 
-//        System.out.println(file5.getId() + " " + file5.getName() + " " + file5.getFormat() + " " + file5.getSize());
-//        System.out.println(file6.getId() + " " + file6.getName() + " " + file6.getFormat() + " " + file6.getSize());
+//        Sys.out.println(file5.getId() + " " + file5.getName() + " " + file5.getFormat() + " " + file5.getSize());
+//        Sys.out.println(file6.getId() + " " + file6.getName() + " " + file6.getFormat() + " " + file6.getSize());
 
 
 
@@ -117,8 +117,8 @@ public class Demo {
             System.err.println("error: " + e.getMessage());
         }
 
-//        System.out.println(Arrays.deepToString(storage1.getFiles()));
-//        System.out.println(storage1.getFiles().length);
+//        Sys.out.println(Arrays.deepToString(storage1.getFiles()));
+//        Sys.out.println(storage1.getFiles().length);
 
 
     }
