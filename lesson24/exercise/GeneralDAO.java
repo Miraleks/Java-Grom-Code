@@ -19,5 +19,4 @@ public class GeneralDAO<T> {
     public T[] getAll() {
         return array;
     }
-
 }
