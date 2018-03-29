@@ -35,4 +35,16 @@ public class Order {
     public String getShopIdentificator() {
         return shopIdentificator;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", price=" + price +
+                ", currency='" + currency + '\'' +
+                ", itemName='" + itemName + '\'' +
+                ", shopIdentificator='" + shopIdentificator + '\'' +
+                '}';
+    }
 }
+
