@@ -95,7 +95,7 @@ public class UserRepository {
 
     }
 
-    private User findById(long id) {
+    public User findById(long id) {
 
         if(list.contains(id)){
             return list.get(list.indexOf(id));
