@@ -7,6 +7,10 @@ public class UserRepository {
 
     ArrayList<User> list = new ArrayList<>();
 
+    public UserRepository(ArrayList<User> list) {
+        this.list = list;
+    }
+
     public ArrayList<User> getUsers() {
         return list;
     }
