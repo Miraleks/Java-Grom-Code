@@ -5,13 +5,7 @@ import java.util.ArrayList;
 
 public class UserRepository {
 
-//    User[] users;
-
     ArrayList<User> list = new ArrayList<>();
-
-//    public UserRepository(User[] users) {
-//        this.users = users;
-//    }
 
     public ArrayList<User> getUsers() {
         return list;
@@ -23,7 +17,6 @@ public class UserRepository {
 
         ArrayList<String> userNames = new ArrayList<>();
 
-//        String[] userNames = new String[users.length];
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getName() != null)
                 userNames.add(list.get(i).getName());
@@ -32,18 +25,9 @@ public class UserRepository {
     }
 
     public ArrayList<Long> getUserIds() {
-//        if (users == null || users.length == 0)
-//            return null;
 
         if (list.isEmpty())
             return null;
-
-//        int counter = 0;
-//        for (int i = 0; i < users.length; i++) {
-//            if (users[i] != null) {
-//                counter++;
-//            }
-//        }
 
         ArrayList<Long> userId = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
@@ -52,16 +36,6 @@ public class UserRepository {
         }
         return userId;
 
-//        long[] userId = new long[counter];
-//        int j = 0;
-//        for (int i = 0; i < users.length; i++) {
-//            if (users[i] != null) {
-//                userId[j] = users[i].getId();
-//                j = j + i;
-//            } else {
-//                j = j - 1;
-//            }
-//        }
     }
 
     public String getUserNameById(long id) {
@@ -71,18 +45,6 @@ public class UserRepository {
         }
 
         return null;
-//        int clientIndex = -1;
-//        for (int i = 0; i < users.length; i++) {
-//            if (users[i] != null)
-//                if (users[i].getId() == id) {
-//
-//                    clientIndex = i;
-//                }
-//        }
-//        if (clientIndex >= 0)
-//            return users[clientIndex].getName();
-//        else
-//            return null;
     }
 //    getUserByName(String name) - нахождение юзера по имени
 
@@ -92,19 +54,6 @@ public class UserRepository {
             return list.get(list.indexOf(name));
         }
 
-
-
-//        int clientIndex = -1;
-//        for (int i = 0; i < users.length; i++) {
-//            if (users[i] != null)
-//                if (users[i].getName() == name) {
-//
-//                    clientIndex = i;
-//                }
-//        }
-//        if (clientIndex >= 0)
-//            return users[clientIndex];
-//        else
             return null;
 
     }
@@ -116,19 +65,6 @@ public class UserRepository {
         if(list.contains(id)){
             return list.get(list.indexOf(id));
         }
-
-
-//        int clientIndex = -1;
-//        for (int i = 0; i < users.length; i++) {
-//            if (users[i] != null)
-//                if (users[i].getId() == id) {
-//
-//                    clientIndex = i;
-//                }
-//        }
-//        if (clientIndex >= 0)
-//            return users[clientIndex];
-//        else
             return null;
 
     }
@@ -138,21 +74,7 @@ public class UserRepository {
         if(list.contains(sessionId)){
             return list.get(list.indexOf(sessionId));
         }
-
-
-//        int clientIndex = -1;
-//        for (int i = 0; i < users.length; i++) {
-//            if (users[i] != null)
-//                if (users[i].getSessionId() == sessionId) {
-//
-//                    clientIndex = i;
-//                }
-//        }
-//        if (clientIndex >= 0)
-//            return users[clientIndex];
-//        else
             return null;
-
     }
 
     /*
@@ -171,23 +93,6 @@ public class UserRepository {
         list.add(user);
         return user;
 
-//        int addedUser = -1;
-//        if (findById(user.getId()) != null) {
-//            return null;
-//        } else {
-//            for (int i = 0; i < users.length; i++) {
-//
-//                if (users[i] == null) {
-//                    users[i] = user;
-//                    addedUser = i;
-//                    break;
-//                }
-//            }
-//        }
-//        if (addedUser >= 0)
-//            return users[addedUser];
-//        else
-//            return null;
     }
 
     private User findById(long id) {
@@ -195,23 +100,9 @@ public class UserRepository {
         if(list.contains(id)){
             return list.get(list.indexOf(id));
         }
-
-
-
-//        int userIndex = -1;
-//        for (int i = 0; i < users.length; i++) {
-//            if (users[i] != null)
-//                if (users[i].getId() == id) {
-//
-//                    userIndex = i;
-//                }
-//        }
-//        if (userIndex >= 0)
-//            return users[userIndex];
-//        else
             return null;
-
     }
+
     /*
    User update(User user) - будет обновлять текущего юзера в массиве (перезаписывать) и возвращать его. Если юзера нет, результат метода null
 void delete(long id) - удаляет юзера с массива
@@ -229,14 +120,6 @@ void delete(long id) - удаляет юзера с массива
                 return list.get(list.indexOf(user));
             }
 
-
-
-//            for (int i = 0; i < users.length; i++) {
-//                if (findById(user.getId()) != null) {
-//                    users[i] = user;
-//                    return users[i];
-//                }
-//            }
         }
         return null;
     }
@@ -248,15 +131,6 @@ void delete(long id) - удаляет юзера с массива
 
         }
 
-//        if (findById(id) != null) {
-//            for (int i = 0; i < users.length; i++) {
-//                if (users[i] != null) {
-//                    if (users[i].getId() == id) {
-//                        users[i] = null;
-//                    }
-//                }
-//            }
-//        }
 
 
     }
