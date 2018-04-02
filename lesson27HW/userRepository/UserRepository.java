@@ -15,9 +15,9 @@ public class UserRepository {
         return list;
     }
 
-    public ArrayList<String> getUserNames() {
+    public ArrayList<String> getUserNames() throws Exception{
         if (list.isEmpty())
-            return null;
+            throw new NullPointerException("List is empty");
 
         ArrayList<String> userNames = new ArrayList<>();
 
@@ -28,10 +28,10 @@ public class UserRepository {
         return userNames;
     }
 
-    public ArrayList<Long> getUserIds() {
+    public ArrayList<Long> getUserIds() throws Exception {
 
         if (list.isEmpty())
-            return null;
+            throw new NullPointerException("List is empty");
 
         ArrayList<Long> userId = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
@@ -42,43 +42,43 @@ public class UserRepository {
 
     }
 
-    public String getUserNameById(long id) {
+    public String getUserNameById(long id) throws Exception {
 
         if(list.contains(id)){
             return list.get(list.indexOf(id)).getName();
         }
 
-        return null;
+        throw new Exception("Object with id: " + id + " not found");
     }
 //    getUserByName(String name) - нахождение юзера по имени
 
-    public User getUserByName(String name) {
+    public User getUserByName(String name) throws Exception {
 
         if(list.contains(name)){
             return list.get(list.indexOf(name));
         }
 
-            return null;
+        throw new Exception("Object with name: " + name + " not found");
 
     }
 
 //    getUserById(long id) - нахождение юзера по id
 
-    public User getUserById(long id) {
+    public User getUserById(long id) throws Exception {
 
         if(list.contains(id)){
             return list.get(list.indexOf(id));
         }
-            return null;
+        throw new Exception("Object with id: " + id + " not found");
 
     }
 
-    public User getUserBySessionId(String sessionId) {
+    public User getUserBySessionId(String sessionId) throws Exception {
 
         if(list.contains(sessionId)){
             return list.get(list.indexOf(sessionId));
         }
-            return null;
+        throw new Exception("Object with sessionId: " + sessionId + " not found");
     }
 
     /*
@@ -89,9 +89,9 @@ public class UserRepository {
     Используйте метод с предыдущих задач для нахождение юзера по id. Только переменуйте его в findById(long id).
     Метод должен быть доступен, только внутри класса UserRepository
      */
-    public User save(User user) {
+    public User save(User user) throws Exception {
         if (user == null && list.contains(user)) {
-            return null;
+            throw new Exception("Object: " + user.toString() + " not found");
         }
 
         list.add(user);
@@ -99,12 +99,12 @@ public class UserRepository {
 
     }
 
-    public User findById(long id) {
+    public User findById(long id) throws Exception {
 
         if(list.contains(id)){
             return list.get(list.indexOf(id));
         }
-            return null;
+        throw new Exception("Object with id: " + id + " not found");
     }
 
     /*
@@ -116,7 +116,7 @@ void delete(long id) - удаляет юзера с массива
 Используйте метод findById(long id) с предыдущих задач для нахождение юзера по id. Метод должен быть доступен, только внутри класса UserRepository
      */
 
-    public User update(User user) {
+    public User update(User user) throws Exception {
         if (user != null) {
 
             if(list.contains(user)){
@@ -125,15 +125,16 @@ void delete(long id) - удаляет юзера с массива
             }
 
         }
-        return null;
+        throw new Exception("Object: " + user.toString() + " not found");
     }
 
-    public void delete(long id) {
+    public void delete(long id) throws Exception {
 
         if(list.contains(id)){
             list.remove(list.indexOf(id));
 
         }
+        throw new Exception("Object with id: " + id + " not found");
 
 
 
