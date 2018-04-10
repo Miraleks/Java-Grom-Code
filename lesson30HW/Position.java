@@ -1,0 +1,6 @@
+package lesson30HW;
+
+public enum Position {
+    TEAM_LEAD, DEVELOPER, FINANCE, ANALYST, MANAGER, DESIGNER, LEAD_DESIGNER
+
+}
