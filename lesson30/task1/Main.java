@@ -40,20 +40,20 @@ public class Main {
         Sys.out.println("after: " + firstEUBankUser.getBalance());*/
 
     }
-    /*private static void userOperations(User user, int amount){
+    /*private static void userOperations(User users, int amount){
         BankSystem bankSystem = new UkrainianBankSystem();
-        userDraw(user, amount, bankSystem);
-        userFund(user, amount, bankSystem);
-        userPaySalary(user, bankSystem);
+        userDraw(users, amount, bankSystem);
+        userFund(users, amount, bankSystem);
+        userPaySalary(users, bankSystem);
     }
 
-    private static void userDraw(User user, int amount, BankSystem bankSystem){
-        bankSystem.withdraw(user, amount);
-        Sys.out.println(user.getBalance());
+    private static void userDraw(User users, int amount, BankSystem bankSystem){
+        bankSystem.withdraw(users, amount);
+        Sys.out.println(users.getBalance());
     }
-    private static void userFund(User user, int amount, BankSystem bankSystem){
-        bankSystem.fund(user, amount);
-        Sys.out.println(user.getBalance());
+    private static void userFund(User users, int amount, BankSystem bankSystem){
+        bankSystem.fund(users, amount);
+        Sys.out.println(users.getBalance());
     }
     private static void userTransfer(User fromUser, User toUser, int amount){
         BankSystem bankSystem = new UkrainianBankSystem();
@@ -61,9 +61,9 @@ public class Main {
         Sys.out.println("fromUser balance: " + fromUser.getBalance());
         Sys.out.println("toUser balance: " + toUser.getBalance());
     }
-    private static void userPaySalary(User user){
-        fund(user, user.getSalary());
-        Sys.out.println(user.getBalance());
+    private static void userPaySalary(User users){
+        fund(users, users.getSalary());
+        Sys.out.println(users.getBalance());
     }*/
 
 }
