@@ -15,5 +15,6 @@ public class FindOdd {
         } else {
             System.out.println("Smaller or equal");
         }
+
     }
 }
