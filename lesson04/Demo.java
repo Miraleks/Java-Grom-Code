@@ -2,7 +2,7 @@ package lesson04;
 
 public class Demo {
     public static void main(String[] args) {
-        //test withdraw
+        //a_test withdraw
         //тест отстутствия имени в массиве --
         //тест ухода баланса в минус
         //тест нулевого массива

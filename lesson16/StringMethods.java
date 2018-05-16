@@ -29,7 +29,7 @@ public class StringMethods {
         String phrase = "Hello there guys";
         System.out.println(Arrays.toString(phrase.split(" ")));
 
-        System.out.println(" test a".trim());
+        System.out.println(" a_test a".trim());
 
         System.out.println(phrase.substring(5));
         System.out.println(phrase.substring(5, 10).trim());

@@ -13,20 +13,20 @@ public class Demo {
 
 
 //        Sys.out.println("countWords");
-//        Sys.out.println(Solution.countWords(test));
+//        Sys.out.println(Solution.countWords(a_test));
 //        Sys.out.println(Solution.countWords(test1));
 //        Sys.out.println(Solution.countWords(test2));
 //
 //        Sys.out.println("maxWord");
-//        Sys.out.println(Solution.maxWord(test)); //something
+//        Sys.out.println(Solution.maxWord(a_test)); //something
 //        Sys.out.println(Solution.maxWord(test1)); // null
 //        Sys.out.println(Solution.maxWord(test2)); // word
 //        Sys.out.println("minWord");
-//        Sys.out.println(Solution.minWord(test)); //is
+//        Sys.out.println(Solution.minWord(a_test)); //is
 //        Sys.out.println(Solution.minWord(test1)); // null
 //        Sys.out.println(Solution.minWord(test2)); // is
 //        Sys.out.println("mostCountedWord");
-//        Sys.out.println(Solution.mostCountedWord(test)); //sdf
+//        Sys.out.println(Solution.mostCountedWord(a_test)); //sdf
 //        Sys.out.println(Solution.mostCountedWord(test1)); //null
 //        Sys.out.println(Solution.mostCountedWord(test2)); //is
 

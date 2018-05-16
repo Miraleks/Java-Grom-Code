@@ -11,8 +11,8 @@ public class StringCompare {
 
         System.out.println("Abc".equals("abc"));
 
-        String s1 = "test";
-        String s2 = "test";
+        String s1 = "a_test";
+        String s2 = "a_test";
 
         System.out.println(s1 == s2);
 

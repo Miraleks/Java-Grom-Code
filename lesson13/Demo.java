@@ -30,7 +30,7 @@ public class Demo {
 
         userRepository.save(null);
 
-        //test update
+        //a_test update
         user = new User(1001, "Ann", "secondSessionId");
         userRepository.update(user);
         System.out.println(Arrays.deepToString(userRepository.getUsers()));

@@ -3,10 +3,10 @@ package lesson11.biginterfaceexample;
 public class Demo {
     public static void main(String[] args) {
 
-        File file1 = new File("test", "C:/user/home", "txt", 11);
-        File file2 = new File("test", "C:/user/home", "txt", 11);
+        File file1 = new File("a_test", "C:/user/home", "txt", 11);
+        File file2 = new File("a_test", "C:/user/home", "txt", 11);
         File file3 = new File("video", "C:/user/home", "txt", 11);
-        //File file4 = new File("test", "C:/user/home", "txt", 11);
+        //File file4 = new File("a_test", "C:/user/home", "txt", 11);
         File file5 = new File("myhome", "C:/user/home", "jpg", 120);
 
         File[] files = new File[]{file1, file2, file3, null, file5};
