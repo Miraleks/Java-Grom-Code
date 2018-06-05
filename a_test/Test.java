@@ -10,7 +10,6 @@ public class Test {
             System.out.print(e.getMessage());
         } catch (Exception e) {
             System.out.print(e.getMessage());
-
         }finally {
             System.out.println("World");
         }

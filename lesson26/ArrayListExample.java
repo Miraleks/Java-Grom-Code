@@ -57,7 +57,13 @@ public class ArrayListExample {
         System.out.println(listString.toString());
         System.out.println(listString.size());
 
+        System.out.println("Element index in List: " + listString.indexOf("three"));
+
         listString.remove(2);
+
+        String result = listString.get(2);
+
+        System.out.println("Result: " + result);
 
         System.out.println(listString.toString());
         System.out.println(listString.size());
